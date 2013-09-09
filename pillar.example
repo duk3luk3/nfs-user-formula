@@ -1,0 +1,13 @@
+users_nfs:
+  master: nfs-master
+  master_uri: nfs-master.domain
+  topdir: /srv/nfs/homes
+  groups:
+    testgroup: 
+      gid: 200010
+  users:
+    testuser:
+      shell: /bin/bash
+      uid: 200011
+      groups:
+        - testgroup
