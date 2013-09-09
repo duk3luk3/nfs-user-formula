@@ -1,0 +1,6 @@
+# use this hook to deploy the formula to your salt root
+
+SALT = /srv/salt
+
+rm -r $SALT/nfs-users;
+cp -r $GIT_DIR/nfs-users $SALT/
