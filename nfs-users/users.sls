@@ -80,10 +80,10 @@ nfs_homedir_top:
      else:
        homedir_root = '/mnt/nfs'
 %>
-%  if is_master:
 %    for name, group in groups.items():
 ${name}_group:
-%      if group.get('createhome',False):
+%      if is_master:
+%        if group.get('createhome',False):
   file.directory:
     - name: ${homedir_root}/${name}
     - user: root
@@ -91,12 +91,12 @@ ${name}_group:
     - group: ${name}
     - require:
       - group: ${name}
-%      endif
+%        endif
+%     endif
   group.present:
     - name: ${name}
     - gid: ${group['gid']}
 %    endfor
-%  endif
 
 # create users
 %  for name, user in pillar_root.get('users', {}).items():
